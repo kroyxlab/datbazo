@@ -1,0 +1,19 @@
+{
+    "name": "kroyxlab/klpdo",
+    "description": "SQL query constructor",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kristian Soto",
+            "email": "kroyxlab@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "kroyxlab\\klpdo": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
