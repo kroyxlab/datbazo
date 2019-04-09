@@ -12,7 +12,7 @@
    * 
    * @author Kristian Soto <kroyxlab@gmail.com>
    * @license MIT
-   * @version 1.0.0
+   * @version 1.1.0
    */
   class KLPdo{
     
@@ -23,6 +23,8 @@
     protected $_query;
 
     protected $_execute = [];
+
+    protected $_output;
 
     /**
      * Muestra el mensaje de error de la consulta
@@ -223,11 +225,34 @@
     public function execute(){
       $execute = $this->_PDO->prepare($this->_query);
       $execute->execute($this->_execute);
-      $this->_fetch = $execute->fetchAll(PDO::FETCH_ASSOC);
+      $this->_fetch = $execute;
       $this->error = $execute->errorInfo();
       $this->_query = NULL;
       $this->_execute = NULL;
     }    
+
+
+    /**
+     * Configura la forma en la que se obtendra el resultado de la consulta
+     *
+     * @param string $type assoc || json || column || keyPair || unique || group || obj
+     * @return void resultado del fetch
+     */
+    public function fetch(string $type = ''){
+      if($type !== ''){
+        if(strtoupper($type) == 'ASSOC'){$fetch = $this->_fetch->fetchAll(PDO::FETCH_ASSOC);}
+        else if(strtoupper($type) == 'JSON'){$fetch = json_encode($this->_fetch->fetchAll(PDO::FETCH_OBJ));}
+        else if(strtoupper($type) == 'COLUMN'){$fetch = $this->_fetch->fetchAll(PDO::FETCH_COLUMN);}
+        else if(strtoupper($type) == 'KEYPAIR'){$fetch = $this->_fetch->fetchAll(PDO::FETCH_KEY_PAIR);}
+        else if(strtoupper($type) == 'UNIQUE'){$fetch = $this->_fetch->fetchAll(PDO::FETCH_UNIQUE);}
+        else if(strtoupper($type) == 'GROUP'){$fetch = $this->_fetch->fetchAll(PDO::FETCH_GROUP);}
+        else if(strtoupper($type) == 'OBJ'){$fetch = $this->_fetch->fetchAll(PDO::FETCH_OBJ);}
+        else{$fetch = $this->_fetch->fetchAll($type);}
+      }
+      
+      $this->_output = $fetch;
+      return $fetch;
+    }
 
   /**
    * Render the result of the SQL query
@@ -235,7 +260,7 @@
    * @param $render
    */
     public function render($render){
-      $fetch = $this->_fetch;
+      $fetch = $this->_output;
       $output = array_map($render, $fetch, array_keys($fetch));
       $output = array_reduce($output, function($a, $b){return "{$a} {$b}";}, '');
       $output = ltrim($output, ' ');
