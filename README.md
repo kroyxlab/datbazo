@@ -1,100 +1,119 @@
-# KLPdo
+<p align="center">
+  <img width="460" src="./DatBazo.png">
+</p>
 
-KLPdo Es un microframework con el cual podrás crear SQL querys e interactuar con la base de datos.
+<p align="right">
+  <a href="./README_EO.md"><img width="40" src="./docs/eo.png"></a>
+  <a href="./README_ES.md"><img width="40" src="./docs/es.png"></a>
+</p>
 
-## Indice
+# DatBazo
 
-* [Dependencias](#Dependencias)
-* [Instalar](#Instalar)
-* [Para empezar](#Para-empezar)
-* [Métodos](#Métodos)
-* [Autor](#Autor)
-* [Licencia](#Licencia)
+DatBazo(Data Bazo, Database in Esperanto) is a SQL-query constructor using PDO. is a small library with which you can quickly create queries to the database using the "Prepare" and "Execute" methods of PDO to avoid sql injections.
 
-## Dependencias
+## Table of contents
 
-Este paquete requiere de PHP 7 o superior.
+1. [Dependencies](#Dependencies)
+2. [Install](#Install)
+3. [Getting started](#Getting-started)
+4. [Methods](#Methods)
+5. [Author](#Author)
+6. [License](#License)
 
-## Instalar
+## Dependencies
 
-**vía composer:**
+This package requires PHP 7 or higher.
 
-```
+## Install
+
+### via composer
+
+```console
 composer require kroyxlab/klpdo
 ```
-**Via repositorio repositorio**
 
-Copia el repositorio directo en tu proyecto y requiere la clase.
+### Copy repository
+
+Copy the direct repository to your project and require the class.
 
 ```php
-require_once 'directoria_del_proyecto/klpdo/src/KLPdo.php';
+require_once 'proyect_directory/datbazo/src/DatBazo.php';
 use kroyxlab\klpdo\KLPdo as KLPdo;
 ```
 
-## Para empezar
+## Getting started
 
-Modifica el archivo KLPdo.ini ubicado en la carpeta `vendor/kroyxlab/klpdo/src/KLPDO.ini` y modifica los valores para configurar la conexión a la base de datos.
+Modify the KLPdo.ini file located in the folder `vendor/kroyxlab/datbazo/src/DBconfig.ini` and modify the values to configure the connection to the database.
 
 ```ini
-  [database]
-  db_driver = Mysql, sqlite3, pgsql
-  db_host = Nombre_del_Host
-  db_port = Puerto
-  db_name = Nombre_de_la_base_de_datos
-  db_user = usuario
-  db_password = contraseña
-  db_charset = UTF8
+[databazo]
+db_driver = Mysql || sqlite3 || pgsql
+db_host = Host_name
+db_port = Port
+db_name = Database_name
+db_user = user
+db_password = password
+db_charset = UTF8
 ```
 
-Si todo esta configurado correctamente podrás comenzar a usar la librería.
+If everything is configured correctly, you can start using the library.
 
 ```php
 
 require_once "vendor/autoload.php";
-use kroyxlab\klpdo\KLPdo as KLPdo;
+use kroyxlab\datbazo\DatBazo as DatBazo;
 
-// instancia la clase KLPdo
-$productos = new KLPdo;
+// instantiate the DatBazo class
+$productos = new DatBazo;
 
-// Crea una sentencia SQL mediante los métodos de la clase KLPdo
-$productos->select(['productos'=>'nombre, precio'])
-          ->where(['precio'=>['>=', 12.5]])
-          ->order('precio')
+// Create an SQL statement using the methods of the KLPdo class
+$products->select(['products'=>'name, price'])
+          ->where(['price'=>['>=', 12.5]])
+          ->order('price')
           ->execute();
 
-// Usa el Método ->render(); para dar salida y formato al resultado de la consulta sql
-$productos->render(function($producto){
+// Set the type of fetch you want.
+$products->fetch('assoc');
 
-  return "<p>El producto de nombre {$producto['nombre']} tiene un valor de {$producto['precio']}</p>";
+// Use the Method -> render (); to output and format the result of the sql query
+$products->render(function($product){
+
+  return "<p>The name of the product is {$product['name']} and the price is {$product['price']}</p>";
 
 });
 
+// Or use a foreach loop using the fetch method
+
+foreach($products->fecth('obj') as $product){
+  echo "<p>The name of the product is $product->name and the price is $product->price</p>"
+}
+
 ```
 
-## Métodos
+## Methods
 
-Los metodos de la clase KLPdo ayudan a crear una sentencia SQL la cual sera ejecuta atraves de los metodos `prepare` y `execute` de Pdo evitando asi las injecciones SQL.
+The methods of the DatBazo class help to create an SQL statement which will be executed through the `prepare` and `execute` methods of Pdo to avoid SQL injections.
 
-### **Lista de metodos:**
+### **List of methods:**
 
-* [Select()](./docs/select)
-* [join()](./docs/join)
-* [Insert()](./docs/insert)
-* [Where()](./docs/where)
-* [Update()](./docs/update)
-* [Delete()](./docs/delete)
-* [Limit()](./docs/limit)
-* [Offset()](./docs/offset)
-* [Group()](./docs/group)
-* [Order()](./docs/order)
-* [Execute()](./docs/execute)
-* [Fetch()](./docs/fetch)
-* [Render()](./docs/render)
+* [Select()](./docs/en/select.md)
+* [join()](./docs/en/join.md)
+* [Insert()](./docs/en/insert.md)
+* [Where()](./docs/en/where.md)
+* [Update()](./docs/en/update.md)
+* [Delete()](./docs/en/delete.md)
+* [Limit()](./docs/en/limit.md)
+* [Offset()](./docs/en/offset.md)
+* [Group()](./docs/en/group.md)
+* [Order()](./docs/en/order.md)
+* [Execute()](./docs/en/execute.md)
+* [Fetch()](./docs/en/fetch.md)
+* [Render()](./docs/en/render.md)
 
-## **Autor**
+## **Author**
 
 * **Kristian Soto (KroyxLab)** - [Github](https://github.com/KroyxLab) | [Gitlab](https://gitlab.com/KroyxLab)
 
-## **Licencia**
+## **License**
 
 This project is licensed under the MIT License - see the [MIT.md](license.md) file for details
