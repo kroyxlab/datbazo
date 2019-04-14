@@ -4,7 +4,7 @@
 
 # DatBazo
 
-DatBazo(Data Bazo, Base de datos en Esperanto) es un SQL-query constructor el cual trabaja con PDO. Es un pequeña libreria con la que podras crear consultas a la base de datos usando los metodos "Prepare" y "Execute" de PDO para de esta manera evitar las injecciones sql.
+DatBazo(Datuma Bazo, Base de datos en Esperanto) es un SQL-query constructor el cual trabaja con PDO. Es un pequeña libreria con la que podras crear consultas a la base de datos usando los metodos "Prepare" y "Execute" de PDO para de esta manera evitar las injecciones sql.
 
 ## Indice
 
