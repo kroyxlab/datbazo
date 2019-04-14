@@ -1,8 +1,8 @@
 {
-    "name": "kroyxlab/klpdo",
-    "description": "KLPdo Es un microframework con el cual podrás crear SQL querys e interactuar con la base de datos.",
-    "keywords": ["php","base de datos", "pdo", "database", "sql"],
-    "homepage": "https://github.com/kroyxlab/klpdo",
+    "name": "kroyxlab/datbazo",
+    "description": "DatBazo(Datuma Bazo, Base de datos en Esperanto) es un SQL-query constructor el cual trabaja con PDO.",
+    "keywords": ["php","base de datos", "pdo", "database", "sql", "datumo", "bazo", "esperanto"],
+    "homepage": "https://github.com/kroyxlab/datbazo",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -14,7 +14,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "kroyxlab\\klpdo\\": "src/"
+            "kroyxlab\\datbazo\\": "src/"
         }
     },
     "minimum-stability": "stable",
