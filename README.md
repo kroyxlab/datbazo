@@ -29,7 +29,7 @@ This package requires PHP 7 or higher.
 ### via composer
 
 ```console
-composer require kroyxlab/klpdo
+composer require kroyxlab/datbazo
 ```
 
 ### Copy repository
@@ -38,7 +38,7 @@ Copy the direct repository to your project and require the class.
 
 ```php
 require_once 'proyect_directory/datbazo/src/DatBazo.php';
-use kroyxlab\klpdo\KLPdo as KLPdo;
+use kroyxlab\datbazo\DatBazo as DatBazo;
 ```
 
 ## Getting started
