@@ -1,6 +1,6 @@
 {
     "name": "kroyxlab/datbazo",
-    "description": "DatBazo(Datuma Bazo, Base de datos en Esperanto) es un SQL-query constructor el cual trabaja con PDO.",
+    "description": "DatBazo(Datuma Bazo, Database in Esperanto) is a SQL-query constructor using PDO.",
     "keywords": ["php","base de datos", "pdo", "database", "sql", "datumo", "bazo", "esperanto"],
     "homepage": "https://github.com/kroyxlab/datbazo",
     "type": "library",
